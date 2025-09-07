@@ -20,15 +20,42 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 
 [Protótipo da aplicação](https://www.figma.com/design/7FV376NN5pPtOk4clyFEu2/Check-time?node-id=0-1&t=UvAwh6PTfdxbscoC-1)
 
+## Banco de dados
 
-## ✅ Checklist de Desenvolvimento  
+[Modelo de banco de dados](https://dbdiagram.io/d/check-time-68bcdf6561a46d388ecaab75)
 
-### 🔹 Checklist de desenvolvimento
-- [ ] Tela de **Login**
-- [ ] Tela **Home** com botão “Bater Ponto”.  
+
+## Planejamento de Sprints
+
+### Sprint 1 (Semana 1) – Configuração inicial
+- [x] Criar projeto com Expo
+- [ ] Configurar navegação básica (React Navigation)
+- [ ] Implementar tela de **Login** (mock simples, sem backend)
+- [ ] Criar modelo de dados (User e Registers)
+- **Previsão:** 1 semana
+
+---
+
+### Sprint 2 (Semana 2) – Funcionalidades principais
+- [ ] Tela **Home** com botão “Bater Ponto”
 - [ ] Registro de entrada/saída
-- [ ] Salvamento dos registros 
-- [ ] Tela de **Histórico** com lista simples.  
-- [ ] Diferenciar **entrada e saída** automaticamente.  
-- [ ] Calcular **horas trabalhadas por dia**.  
+- [ ] Persistência local com SQLite/AsyncStorage
+- [ ] Diferenciar **entrada e saída** automaticamente
+- **Previsão:** 1 semana
+
+---
+
+### Sprint 3 (Semana 3) – Histórico e cálculos
+- [ ] Tela de **Histórico** com lista de registros
+- [ ] Cálculo de **horas trabalhadas por dia**
+- [ ] Soma de horas em período selecionado
+- **Previsão:** 1 semana
+
+---
+
+### Sprint 4 (Semana 4) – Refinamento e extras
+- [ ] Editar/remover registros
+- [ ] Ajustes de layout e usabilidade
+- [ ] Testes e melhorias finais
+- **Previsão:** 1 semana
 
