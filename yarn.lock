@@ -771,6 +771,16 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
+"@expo-google-fonts/montserrat@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/montserrat/-/montserrat-0.4.2.tgz#2fa3a12ac0c79bf51ff48b5ed7fa71db26057fda"
+  integrity sha512-Xyq7rKJhhZOE1Xk4wKSSVoUeOkFmQEMhtZ3pdFrgYckGZMs115Apmld1AI8Ju+yrl5GzDdfRCCqRr33dvEDYUA==
+
+"@expo-google-fonts/open-sans@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/open-sans/-/open-sans-0.4.2.tgz#6479b000202a483ac283e22d8057197d3dedc8c8"
+  integrity sha512-gvhPqLXYnltWgll3iBwRGUwf5yN2HCh4mgQmFoQ8oU66LTs23oX4N7T3t0BDsKfP/1Z8F8+4c7wSkA11Nnk4kA==
+
 "@expo-google-fonts/roboto@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/roboto/-/roboto-0.4.1.tgz#71b7281b0a133107ebc0726a2680e50ca310dad4"

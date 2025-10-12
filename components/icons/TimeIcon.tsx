@@ -14,7 +14,7 @@ export default function TimeIcon() {
 
 const styles = StyleSheet.create({
   icon: {
-    marginTop: 200,
+    marginTop: 100,
     marginBottom: 10,
     color: "#A6E6F0",
   },

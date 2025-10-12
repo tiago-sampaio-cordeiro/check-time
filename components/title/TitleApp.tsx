@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     fontFamily: "Roboto_600SemiBold",
-    marginBottom: 300,
+    marginBottom: 30,
     color: "#A6E6F0",
   },
 });
