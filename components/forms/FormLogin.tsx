@@ -3,11 +3,11 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { useFonts, OpenSans_300Light } from "@expo-google-fonts/open-sans";
+import Input from "../inputs/Input";
 
 export default function FormLogin() {
   const [fontsLoaded] = useFonts({
@@ -18,12 +18,10 @@ export default function FormLogin() {
 
   return (
     <View>
-      <Text style={styles.label}>User</Text>
-      <TextInput style={styles.input} placeholder="Digite seu email" />
+      <Input label="User" placeholder="Digite seu email" />
 
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
+      <Input
+        label="Password"
         placeholder="Digite sua senha"
         secureTextEntry={true}
       />
@@ -36,7 +34,7 @@ export default function FormLogin() {
       </TouchableOpacity>
 
       <Text style={styles.text}>
-        You don't hava an account?{" "}
+        You don't have an account?{" "}
         <Text
           style={styles.register}
           onPress={() => console.log("direcionando para tela de cadastro")}
