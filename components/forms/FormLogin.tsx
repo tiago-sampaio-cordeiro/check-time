@@ -1,15 +1,16 @@
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { useFonts, OpenSans_300Light } from "@expo-google-fonts/open-sans";
 import Input from "../inputs/Input";
+import { useNavigation, useRouter } from "expo-router";
 
 export default function FormLogin() {
+  const router = useRouter();
+  const redirectLogin = () => {
+    router.push("/calculateHours");
+    console.log("redirecionado para calculateHours");
+  };
+
   const [fontsLoaded] = useFonts({
     OpenSans_300Light,
   });
@@ -18,18 +19,22 @@ export default function FormLogin() {
 
   return (
     <View>
-      <Input label="User" placeholder="Digite seu email" />
+      <Input
+        labelStyle={styles.label}
+        inputStyle={styles.input}
+        label="User"
+        placeholder="Digite seu email"
+      />
 
       <Input
+        labelStyle={styles.label}
+        inputStyle={styles.input}
         label="Password"
         placeholder="Digite sua senha"
         secureTextEntry={true}
       />
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => console.log("botao clicado")}
-      >
+      <TouchableOpacity style={styles.button} onPress={redirectLogin}>
         <Text style={styles.text}>Entrar</Text>
       </TouchableOpacity>
 

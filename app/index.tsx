@@ -5,9 +5,9 @@ import TimeIcon from "../components/icons/TimeIcon";
 import FormLogin from "../components/forms/FormLogin";
 import Subtitle from "../components/subtitle/Subtitle";
 
-export default function App() {
+export default function index() {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <TimeIcon />
         <TitleApp />
@@ -20,6 +20,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     backgroundColor: "#172A42",
