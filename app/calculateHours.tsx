@@ -11,10 +11,13 @@ import TitleApp from "../components/title/TitleApp";
 import Input from "../components/inputs/Input";
 import Subtitle from "../components/subtitle/Subtitle";
 import Entypo from "@expo/vector-icons/Entypo";
+import { useRouter } from "expo-router";
 
 export default function calculateHours() {
+  const router = useRouter();
   const calcular = () => {
-    console.log("calculado");
+    router.push("/listTime");
+    console.log("redirecionado para tela de listagem");
   };
   return (
     <ScrollView>
