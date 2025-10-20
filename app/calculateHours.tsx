@@ -12,6 +12,7 @@ import Input from "../components/inputs/Input";
 import Subtitle from "../components/subtitle/Subtitle";
 import Entypo from "@expo/vector-icons/Entypo";
 import { useRouter } from "expo-router";
+import Button from "../components/buttons/Button";
 
 export default function calculateHours() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function calculateHours() {
     console.log("redirecionado para tela de listagem");
   };
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <TimeIcon />
         <TitleApp />
@@ -55,15 +56,17 @@ export default function calculateHours() {
             <Entypo name="plus" size={30} color="white" />
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonCalculate} onPress={calcular}>
-          <Text style={styles.text}>Calcular</Text>
-        </TouchableOpacity>
+        <Button buttonName="Calcular" redirect={calcular} />
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     backgroundColor: "#172A42",
@@ -101,19 +104,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-  },
-  buttonCalculate: {
-    backgroundColor: "#007AFF",
-    padding: 12,
-    borderRadius: 50,
-    alignItems: "center",
-    marginTop: 100,
-    marginBottom: 120,
-    width: 300,
-  },
-  text: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "bold",
   },
 });
