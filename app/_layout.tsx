@@ -6,6 +6,7 @@ export default function _layout() {
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="calculateHours" options={{ headerShown: false }} />
+      <Stack.Screen name="listTime" options={{ headerShown: false }} />
     </Stack>
   );
 }
