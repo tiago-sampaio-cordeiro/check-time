@@ -3,13 +3,13 @@ import React from "react";
 
 interface ButtonProps {
   buttonName: string;
-  redirect: () => void;
+  submitFunction: () => void;
 }
 
-export default function Button({ buttonName, redirect }: ButtonProps) {
+export default function Button({ buttonName, submitFunction }: ButtonProps) {
   return (
     <View>
-      <TouchableOpacity style={styles.button} onPress={redirect}>
+      <TouchableOpacity style={styles.button} onPress={submitFunction}>
         <Text style={styles.text}>{buttonName}</Text>
       </TouchableOpacity>
     </View>
@@ -29,8 +29,5 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
-  },
-  register: {
-    color: "#00aeffff",
   },
 });
