@@ -8,11 +8,11 @@ import {
 import React from "react";
 import TimeIcon from "../components/icons/TimeIcon";
 import TitleApp from "../components/title/TitleApp";
-import Input from "../components/inputs/Input";
 import Subtitle from "../components/subtitle/Subtitle";
 import Entypo from "@expo/vector-icons/Entypo";
 import { useRouter } from "expo-router";
 import Button from "../components/buttons/Button";
+import InputTimes from "../components/inputs/InputTimes";
 
 export default function calculateHours() {
   const router = useRouter();
@@ -28,20 +28,10 @@ export default function calculateHours() {
         <Subtitle subtitleName="Calculo de horas" />
         <View style={styles.timePair}>
           <View>
-            <Input
-              labelStyle={styles.label}
-              inputStyle={styles.inputTime}
-              label="Entrada"
-              placeholder="--:--"
-            />
+            <InputTimes label="Entrada" placeholder="--:--" />
           </View>
           <View>
-            <Input
-              labelStyle={styles.label}
-              inputStyle={styles.inputTime}
-              label="Saida"
-              placeholder="--:--"
-            />
+            <InputTimes label="Saida" placeholder="--:--" />
           </View>
           <View>
             <TouchableOpacity>
@@ -56,7 +46,7 @@ export default function calculateHours() {
             <Entypo name="plus" size={30} color="white" />
           </Text>
         </TouchableOpacity>
-        <Button buttonName="Calcular" redirect={calcular} />
+        <Button buttonName="Calcular" submitFunction={calcular} />
       </View>
     </ScrollView>
   );
@@ -81,20 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#12364F",
     padding: 15,
     borderRadius: 20,
-  },
-  inputTime: {
-    width: 120,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    marginTop: 5,
-    paddingLeft: 10,
-    marginBottom: 20,
-  },
-  label: {
-    color: "#fff",
-    fontSize: 20,
-    textAlign: "left",
-    fontFamily: "OpenSans_300Light",
+    width: 350,
   },
   buttonPlus: {
     backgroundColor: "#38BC24",
