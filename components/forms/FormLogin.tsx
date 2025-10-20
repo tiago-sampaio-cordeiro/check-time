@@ -3,6 +3,7 @@ import React from "react";
 import { useFonts, OpenSans_300Light } from "@expo-google-fonts/open-sans";
 import Input from "../inputs/Input";
 import { useNavigation, useRouter } from "expo-router";
+import Button from "../buttons/Button";
 
 export default function FormLogin() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function FormLogin() {
   if (!fontsLoaded) return null;
 
   return (
-    <View>
+    <View style={styles.container}>
       <Input
         labelStyle={styles.label}
         inputStyle={styles.input}
@@ -34,11 +35,9 @@ export default function FormLogin() {
         secureTextEntry={true}
       />
 
-      <TouchableOpacity style={styles.button} onPress={redirectLogin}>
-        <Text style={styles.text}>Entrar</Text>
-      </TouchableOpacity>
+      <Button buttonName="Entrar" redirect={redirectLogin} />
 
-      <Text style={styles.text}>
+      <Text style={styles.textLink}>
         You don't have an account?{" "}
         <Text
           style={styles.register}
@@ -52,6 +51,9 @@ export default function FormLogin() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+  },
   input: {
     width: 350,
     backgroundColor: "#fff",
@@ -66,18 +68,11 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontFamily: "OpenSans_300Light",
   },
-  button: {
-    backgroundColor: "#007AFF",
-    padding: 12,
-    borderRadius: 50,
-    alignItems: "center",
-    marginTop: 30,
-    marginBottom: 120,
-  },
-  text: {
+  textLink: {
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
+    marginTop: 50,
   },
   register: {
     color: "#00aeffff",
