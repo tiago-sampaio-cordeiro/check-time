@@ -5,7 +5,6 @@ import TitleApp from "../components/title/TitleApp";
 import Subtitle from "../components/subtitle/Subtitle";
 import { times } from "../mocks/MockTimes";
 import Card from "../components/cards/Card";
-import index from ".";
 
 export default function listTime() {
   return (
