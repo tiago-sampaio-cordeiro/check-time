@@ -25,7 +25,7 @@ export default function Card({
             <Text>Entrada: {horarioEntrada}</Text>
           </View>
           <View>
-            <Text>Entrada: {horarioSaida}</Text>
+            <Text>Saída: {horarioSaida}</Text>
           </View>
         </View>
         <View>

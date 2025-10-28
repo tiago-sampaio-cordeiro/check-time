@@ -1,16 +1,21 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TextInputProps,
+} from "react-native";
 import React from "react";
 
-interface InputProps {
+interface InputProps extends TextInputProps {
   label: string;
   placeholder: string;
-  secureTextEntry?: boolean;
 }
 
 export default function InputForms({
   label,
   placeholder,
-  secureTextEntry,
+  ...rest
 }: InputProps) {
   return (
     <View>
@@ -18,7 +23,7 @@ export default function InputForms({
       <TextInput
         style={stylesInputform.input}
         placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
+        {...rest}
       />
     </View>
   );

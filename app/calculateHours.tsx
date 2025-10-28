@@ -46,7 +46,7 @@ export default function calculateHours() {
             <Entypo name="plus" size={30} color="white" />
           </Text>
         </TouchableOpacity>
-        <Button buttonName="Calcular" submitFunction={calcular} />
+        <Button buttonName="Calcular" onPress={calcular} />
       </View>
     </ScrollView>
   );

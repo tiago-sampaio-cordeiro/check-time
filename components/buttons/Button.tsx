@@ -1,15 +1,20 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from "react-native";
 import React from "react";
 
-interface ButtonProps {
+interface ButtonProps extends TouchableOpacityProps {
   buttonName: string;
-  submitFunction: () => void;
 }
 
-export default function Button({ buttonName, submitFunction }: ButtonProps) {
+export default function Button({ buttonName, ...rest }: ButtonProps) {
   return (
     <View>
-      <TouchableOpacity style={styles.button} onPress={submitFunction}>
+      <TouchableOpacity style={styles.button} {...rest}>
         <Text style={styles.text}>{buttonName}</Text>
       </TouchableOpacity>
     </View>
