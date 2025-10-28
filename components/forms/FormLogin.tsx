@@ -3,10 +3,15 @@ import React from "react";
 import { useFonts, OpenSans_300Light } from "@expo-google-fonts/open-sans";
 import Input from "../inputs/InputForms";
 import Button from "../buttons/Button";
+import useLogin from "../../states/useLogin";
 
 export default function FormLogin() {
-  const redirectLogin = () => {
-    console.log("redirecionado para calculateHours");
+  const { user, password, setUserState, setPasswordState } = useLogin();
+
+  const userData = () => {
+    let data = JSON.stringify({ user, password });
+
+    console.log(data);
   };
 
   const [fontsLoaded] = useFonts({
@@ -17,15 +22,21 @@ export default function FormLogin() {
 
   return (
     <View style={styles.container}>
-      <Input label="User" placeholder="Digite seu email" />
+      <Input
+        label="User"
+        placeholder="Digite seu email"
+        value={user}
+        onChangeText={setUserState}
+      />
 
       <Input
         label="Password"
         placeholder="Digite sua senha"
-        secureTextEntry={true}
+        value={password}
+        onChangeText={setPasswordState}
       />
 
-      <Button buttonName="Entrar" submitFunction={redirectLogin} />
+      <Button buttonName="Entrar" onPress={userData} />
 
       <Text style={styles.textLink}>
         You don't have an account?{" "}
