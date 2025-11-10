@@ -24,29 +24,31 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 
 [Modelo de banco de dados](https://dbdiagram.io/d/check-time-68bcdf6561a46d388ecaab75)
 
-
 ## Planejamento de Sprints
 
 ### Sprint 1 (Semana 1) – Configuração inicial
+
 - [x] Criar projeto com Expo
-- [ ] Configurar navegação básica (React Navigation)
-- [ ] Implementar tela de **Login** (mock simples, sem backend)
-- [ ] Criar modelo de dados (User e Registers)
+- [x] Configurar expo router
+- [x] Implementar tela de **Login** (mock simples, sem backend)
+- [ ] Implementar autenticação basica com mock de users
 - **Previsão:** 1 semana
 
 ---
 
 ### Sprint 2 (Semana 2) – Funcionalidades principais
-- [ ] Tela **Home** com botão “Bater Ponto”
+
+- [x] Tela calcular horas trabalhadas”
 - [ ] Registro de entrada/saída
-- [ ] Persistência local com SQLite/AsyncStorage
+- [x] Persistência local com AsyncStorage
 - [ ] Diferenciar **entrada e saída** automaticamente
 - **Previsão:** 1 semana
 
 ---
 
 ### Sprint 3 (Semana 3) – Histórico e cálculos
-- [ ] Tela de **Histórico** com lista de registros
+
+- [x] Tela de **Histórico** com lista de registros
 - [ ] Cálculo de **horas trabalhadas por dia**
 - [ ] Soma de horas em período selecionado
 - **Previsão:** 1 semana
@@ -54,8 +56,17 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 ---
 
 ### Sprint 4 (Semana 4) – Refinamento e extras
+
 - [ ] Editar/remover registros
-- [ ] Ajustes de layout e usabilidade
+- [x] Ajustes de layout e usabilidade
 - [ ] Testes e melhorias finais
 - **Previsão:** 1 semana
 
+### Atualizações desde o último checkpoint
+
+- Utilizei zustand para estados globais(criei estados e ações para os inputs de user e password);
+- Usei AsyncStorage para persistência nos campos user e password;
+- Utilizei conceitos de boas praticas na criação dos componentes:
+
+  - Atomic design na tela de login, onde atomizei o formulário de login até o nivel dos inputs
+  - O titulo do app, o icone,botão de submit,cards com os horarios de netrada e saida e sub-titulo todos reutilizáveis, sendo o sub-titulo,botão de submit e cards com parâmetrização.
