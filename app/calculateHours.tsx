@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import TimeIcon from "../components/icons/TimeIcon";
 import TitleApp from "../components/title/TitleApp";
 import Subtitle from "../components/subtitle/Subtitle";
@@ -15,6 +15,9 @@ import Button from "../components/buttons/Button";
 import InputTimes from "../components/inputs/InputTimes";
 
 export default function calculateHours() {
+  const [entrada, setEntrada] = useState("");
+  const [saida, setSaida] = useState("");
+
   const router = useRouter();
   const calcular = () => {
     router.push("/listTime");
@@ -28,10 +31,20 @@ export default function calculateHours() {
         <Subtitle subtitleName="Calculo de horas" />
         <View style={styles.timePair}>
           <View>
-            <InputTimes label="Entrada" placeholder="--:--" />
+            <InputTimes
+              label="Entrada"
+              placeholder="--:--"
+              value={entrada}
+              onChange={setEntrada}
+            />
           </View>
           <View>
-            <InputTimes label="Saida" placeholder="--:--" />
+            <InputTimes
+              label="Saida"
+              placeholder="--:--"
+              value={saida}
+              onChange={setSaida}
+            />
           </View>
           <View>
             <TouchableOpacity>
