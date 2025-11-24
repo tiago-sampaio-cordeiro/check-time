@@ -3,23 +3,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 type State = {
-  user: string;
+  email: string;
   password: string;
 };
 
 type Actions = {
-  setUserState: (user: string) => void;
+  setUserState: (email: string) => void;
   setPasswordState: (password: string) => void;
 };
 
 const useLogin = create<State & Actions>()(
   persist(
     (set) => ({
-      user: "",
+      email: "",
       password: "",
-      setUserState: (user) =>
+      setUserState: (email) =>
         set(() => ({
-          user,
+          email,
         })),
       setPasswordState: (password) =>
         set(() => ({

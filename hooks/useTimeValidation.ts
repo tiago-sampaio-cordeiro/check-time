@@ -1,7 +1,6 @@
 export function useTimeValidation(timePairs: any[], date: string) {
   const errors: string[] = [];
 
-  // --------- Validar data ---------
   if (!date) {
     errors.push("A data deve ser preenchida.");
   } else {
@@ -11,7 +10,6 @@ export function useTimeValidation(timePairs: any[], date: string) {
     }
   }
 
-  // --------- Validar todos os pares ---------
   timePairs.forEach((pair, index) => {
     const { entrada, saida } = pair;
 

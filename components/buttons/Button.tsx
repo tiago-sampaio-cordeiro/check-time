@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 50,
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 50,
+    marginBottom: 100,
   },
   text: {
     color: "#fff",
