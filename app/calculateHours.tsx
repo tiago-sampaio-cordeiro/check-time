@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import TimeIcon from "../components/icons/TimeIcon";
@@ -15,17 +16,37 @@ import Button from "../components/buttons/Button";
 import InputTimes from "../components/inputs/InputTimes";
 import InputDate from "../components/inputs/InputDate";
 import TotalHours from "../components/inputs/TotalHours";
+import { useTimeValidation } from "../hooks/useTimeValidation";
 
 export default function calculateHours() {
   const [entrada, setEntrada] = useState("");
   const [saida, setSaida] = useState("");
   const [data, setData] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const router = useRouter();
   const calcular = () => {
     router.push("/listTime");
     console.log("redirecionado para tela de listagem");
   };
+
+  const { isValid, errors, errorMessage } = useTimeValidation(
+    entrada,
+    saida,
+    data
+  );
+  function handleSave() {
+    setSubmitted(true);
+
+    if (!isValid) {
+      console.log(errors);
+      return;
+    } else {
+      Alert.alert("registro salvo com sucesso!!");
+    }
+
+    // aqui logica para o pocketbase
+  }
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
@@ -60,12 +81,17 @@ export default function calculateHours() {
           </View>
         </View>
         <InputDate label="Data" value={data} onChange={setData} />
+
+        {submitted && errorMessage && (
+          <Text style={styles.errorText}>{errorMessage}</Text>
+        )}
+
         <TouchableOpacity style={styles.buttonPlus}>
           <Text>
             <Entypo name="plus" size={30} color="white" />
           </Text>
         </TouchableOpacity>
-        <Button buttonName="Calcular" onPress={calcular} />
+        <Button buttonName="Calcular" onPress={handleSave} />
       </View>
     </ScrollView>
   );
@@ -100,5 +126,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
+  },
+  errorText: {
+    color: "red",
+    marginTop: 15,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
