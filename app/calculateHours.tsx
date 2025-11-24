@@ -11,12 +11,40 @@ import TimeIcon from "../components/icons/TimeIcon";
 import TitleApp from "../components/title/TitleApp";
 import Subtitle from "../components/subtitle/Subtitle";
 import Entypo from "@expo/vector-icons/Entypo";
-import { useRouter } from "expo-router";
 import Button from "../components/buttons/Button";
 import InputTimes from "../components/inputs/InputTimes";
 import InputDate from "../components/inputs/InputDate";
 import TotalHours from "../components/inputs/TotalHours";
 import { useTimeValidation } from "../hooks/useTimeValidation";
+
+type TimePair = {
+  id: number;
+  entrada: string;
+  saida: string;
+};
+
+function calcularTotalHoras(pares: TimePair[]): string {
+  let totalMinutos = 0;
+
+  for (const p of pares) {
+    if (!p.entrada || !p.saida) continue;
+
+    const [hIn, mIn] = p.entrada.split(":").map(Number);
+    const [hOut, mOut] = p.saida.split(":").map(Number);
+
+    const entradaMin = hIn * 60 + mIn;
+    const saidaMin = hOut * 60 + mOut;
+
+    if (saidaMin > entradaMin) {
+      totalMinutos += saidaMin - entradaMin;
+    }
+  }
+
+  const horas = String(Math.floor(totalMinutos / 60)).padStart(2, "0");
+  const minutos = String(totalMinutos % 60).padStart(2, "0");
+
+  return `${horas}:${minutos}`;
+}
 
 export default function calculateHours() {
   const [timePairs, setTimePairs] = useState([
@@ -54,11 +82,7 @@ export default function calculateHours() {
     );
   }
 
-  const { isValid, errors, errorMessage } = useTimeValidation(
-    timePairs[0].entrada,
-    timePairs[0].saida,
-    data
-  );
+  const { isValid, errors, errorMessage } = useTimeValidation(timePairs, data);
 
   function handleSave() {
     setSubmitted(true);
@@ -66,19 +90,21 @@ export default function calculateHours() {
     if (!isValid) {
       console.log(errors);
       return;
-    } else {
-      Alert.alert("registro salvo com sucesso!!");
     }
 
-    // aqui logica para o pocketbase
+    const total = calcularTotalHoras(timePairs);
+    Alert.alert("Total de horas", `Você trabalhou ${total}`);
+
+    // futura integração PocketBase
   }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <TimeIcon />
         <TitleApp />
         <Subtitle subtitleName="Calculo de horas" />
-        <TotalHours value="00:00" />
+        <TotalHours value={calcularTotalHoras(timePairs)} />
 
         {timePairs.map((pair) => (
           <View key={pair.id} style={styles.timePair}>
