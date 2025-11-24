@@ -14,6 +14,7 @@ import { useRouter } from "expo-router";
 import Button from "../components/buttons/Button";
 import InputTimes from "../components/inputs/InputTimes";
 import InputDate from "../components/inputs/InputDate";
+import TotalHours from "../components/inputs/TotalHours";
 
 export default function calculateHours() {
   const [entrada, setEntrada] = useState("");
@@ -31,6 +32,8 @@ export default function calculateHours() {
         <TimeIcon />
         <TitleApp />
         <Subtitle subtitleName="Calculo de horas" />
+        <TotalHours value="00:00" />
+
         <View style={styles.timePair}>
           <View>
             <InputTimes

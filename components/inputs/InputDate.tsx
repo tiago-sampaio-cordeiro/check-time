@@ -38,7 +38,7 @@ export default function InputDate({ label, value, onChange }: InputDateProps) {
           style={styles.input}
           placeholder="DD/MM/AAAA"
           value={value}
-          editable={false} // evita abrir teclado
+          editable={false}
         />
       </TouchableOpacity>
 
