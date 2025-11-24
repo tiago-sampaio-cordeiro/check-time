@@ -19,22 +19,47 @@ import TotalHours from "../components/inputs/TotalHours";
 import { useTimeValidation } from "../hooks/useTimeValidation";
 
 export default function calculateHours() {
-  const [entrada, setEntrada] = useState("");
-  const [saida, setSaida] = useState("");
+  const [timePairs, setTimePairs] = useState([
+    { id: Date.now(), entrada: "", saida: "" },
+  ]);
   const [data, setData] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const router = useRouter();
-  const calcular = () => {
-    router.push("/listTime");
-    console.log("redirecionado para tela de listagem");
-  };
+  function addTimePair() {
+    setTimePairs((prev) => [
+      ...prev,
+      { id: Date.now(), entrada: "", saida: "" },
+    ]);
+  }
+
+  function removeTimePair(id: number) {
+    if (timePairs.length === 1) {
+      Alert.alert(
+        "Operação não permitida",
+        "Você precisa ter pelo menos um par."
+      );
+      return;
+    }
+
+    setTimePairs((prev) => prev.filter((item) => item.id !== id));
+  }
+
+  function updateTimePair(
+    id: number,
+    field: "entrada" | "saida",
+    value: string
+  ) {
+    setTimePairs((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, [field]: value } : item))
+    );
+  }
 
   const { isValid, errors, errorMessage } = useTimeValidation(
-    entrada,
-    saida,
+    timePairs[0].entrada,
+    timePairs[0].saida,
     data
   );
+
   function handleSave() {
     setSubmitted(true);
 
@@ -55,42 +80,38 @@ export default function calculateHours() {
         <Subtitle subtitleName="Calculo de horas" />
         <TotalHours value="00:00" />
 
-        <View style={styles.timePair}>
-          <View>
+        {timePairs.map((pair) => (
+          <View key={pair.id} style={styles.timePair}>
             <InputTimes
               label="Entrada"
               placeholder="--:--"
-              value={entrada}
-              onChange={setEntrada}
+              value={pair.entrada}
+              onChange={(v) => updateTimePair(pair.id, "entrada", v)}
             />
-          </View>
-          <View>
+
             <InputTimes
-              label="Saida"
+              label="Saída"
               placeholder="--:--"
-              value={saida}
-              onChange={setSaida}
+              value={pair.saida}
+              onChange={(v) => updateTimePair(pair.id, "saida", v)}
             />
-          </View>
-          <View>
-            <TouchableOpacity>
-              <Text>
-                <Entypo name="trash" size={30} color="white" />
-              </Text>
+
+            <TouchableOpacity onPress={() => removeTimePair(pair.id)}>
+              <Entypo name="trash" size={30} color="white" />
             </TouchableOpacity>
           </View>
-        </View>
-        <InputDate label="Data" value={data} onChange={setData} />
+        ))}
 
         {submitted && errorMessage && (
           <Text style={styles.errorText}>{errorMessage}</Text>
         )}
 
-        <TouchableOpacity style={styles.buttonPlus}>
-          <Text>
-            <Entypo name="plus" size={30} color="white" />
-          </Text>
+        {/* Botão adicionar */}
+        <TouchableOpacity style={styles.buttonPlus} onPress={addTimePair}>
+          <Entypo name="plus" size={30} color="white" />
         </TouchableOpacity>
+        <InputDate label="Data" value={data} onChange={setData} />
+
         <Button buttonName="Calcular" onPress={handleSave} />
       </View>
     </ScrollView>
