@@ -1,39 +1,46 @@
-export function useTimeValidation(entry: string, exit: string, date: string) {
+export function useTimeValidation(timePairs: any[], date: string) {
   const errors: string[] = [];
 
+  // --------- Validar data ---------
   if (!date) {
     errors.push("A data deve ser preenchida.");
   } else {
     const parsed = new Date(date);
-
     if (isNaN(parsed.getTime())) {
       errors.push("Data inválida.");
     }
   }
 
-  if (!entry || !exit) {
-    errors.push("Horários não podem ficar vazios.");
-  }
+  // --------- Validar todos os pares ---------
+  timePairs.forEach((pair, index) => {
+    const { entrada, saida } = pair;
 
-  if (entry === exit && entry && exit) {
-    errors.push("Entrada e saída não podem ser iguais.");
-  }
+    if (!entrada || !saida) {
+      errors.push(`Par ${index + 1}: horários não podem ficar vazios.`);
+      return;
+    }
 
-  if (entry && exit) {
-    const [eh, em] = entry.split(":").map(Number);
-    const [sh, sm] = exit.split(":").map(Number);
+    if (entrada === saida) {
+      errors.push(`Par ${index + 1}: entrada e saída não podem ser iguais.`);
+      return;
+    }
+
+    const [eh, em] = entrada.split(":").map(Number);
+    const [sh, sm] = saida.split(":").map(Number);
 
     const entryMinutes = eh * 60 + em;
     const exitMinutes = sh * 60 + sm;
 
     if (entryMinutes > exitMinutes) {
-      errors.push("Entrada deve ser menor que a saída.");
+      errors.push(`Par ${index + 1}: entrada deve ser menor que a saída.`);
     }
-  }
+  });
+
+  const errorMessage = errors.join("\n");
 
   return {
     isValid: errors.length === 0,
     errors,
-    errorMessage: errors[0] ?? null,
+    errorMessage,
   };
 }
