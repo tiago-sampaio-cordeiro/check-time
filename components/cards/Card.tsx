@@ -16,20 +16,23 @@ export default function Card({
 }: CardProps) {
   return (
     <View style={styles.containerCard}>
-      <View>
-        <Text style={styles.titleCard}>Data: {cardTitle}</Text>
-      </View>
+      <Text style={styles.titleCard}>{cardTitle}</Text>
+
       <View style={styles.registrosETotal}>
         <View style={styles.registrosOnly}>
-          <View>
-            <Text>Entrada: {horarioEntrada}</Text>
+          <View style={styles.timeBlock}>
+            <Text style={styles.label}>Entrada</Text>
+            <Text style={styles.value}>{horarioEntrada}</Text>
           </View>
-          <View>
-            <Text>Saída: {horarioSaida}</Text>
+          <View style={styles.timeBlock}>
+            <Text style={styles.label}>Saída</Text>
+            <Text style={styles.value}>{horarioSaida}</Text>
           </View>
         </View>
-        <View>
-          <Text>Total: {horasTotal}</Text>
+
+        <View style={styles.totalBlock}>
+          <Text style={styles.label}>Total</Text>
+          <Text style={styles.value}>{horasTotal}</Text>
         </View>
       </View>
     </View>
@@ -39,22 +42,45 @@ export default function Card({
 const styles = StyleSheet.create({
   containerCard: {
     width: 350,
-    backgroundColor: "#fff",
-    height: 80,
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 10,
+    backgroundColor: "#1E2A47",
+    borderRadius: 15,
+    padding: 15,
+    marginBottom: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
   },
   titleCard: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#fff",
     textAlign: "center",
+    marginBottom: 12,
   },
   registrosETotal: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
+    alignItems: "center",
   },
   registrosOnly: {
     flexDirection: "row",
-    gap: 30,
+    gap: 25,
+  },
+  timeBlock: {
+    alignItems: "center",
+  },
+  totalBlock: {
+    alignItems: "center",
+  },
+  label: {
+    fontSize: 12,
+    color: "#A0B0D0",
+  },
+  value: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#fff",
   },
 });
