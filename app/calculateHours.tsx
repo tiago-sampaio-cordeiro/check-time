@@ -104,6 +104,7 @@ export default function calculateHours() {
       entrada: pair.entrada,
       saida: pair.saida,
       data: data,
+      total: calcularTotalHoras([pair]),
     }));
 
     console.log(registros);
