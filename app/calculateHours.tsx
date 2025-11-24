@@ -13,10 +13,12 @@ import Entypo from "@expo/vector-icons/Entypo";
 import { useRouter } from "expo-router";
 import Button from "../components/buttons/Button";
 import InputTimes from "../components/inputs/InputTimes";
+import InputDate from "../components/inputs/InputDate";
 
 export default function calculateHours() {
   const [entrada, setEntrada] = useState("");
   const [saida, setSaida] = useState("");
+  const [data, setData] = useState("");
 
   const router = useRouter();
   const calcular = () => {
@@ -54,6 +56,7 @@ export default function calculateHours() {
             </TouchableOpacity>
           </View>
         </View>
+        <InputDate label="Data" value={data} onChange={setData} />
         <TouchableOpacity style={styles.buttonPlus}>
           <Text>
             <Entypo name="plus" size={30} color="white" />
