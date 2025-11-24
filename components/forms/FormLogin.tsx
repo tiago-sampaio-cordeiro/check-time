@@ -1,17 +1,32 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import React from "react";
 import { useFonts, OpenSans_300Light } from "@expo-google-fonts/open-sans";
 import Input from "../inputs/InputForms";
 import Button from "../buttons/Button";
 import useLogin from "../../states/useLogin";
+import { pb } from "../../services/pb";
 
 export default function FormLogin() {
-  const { user, password, setUserState, setPasswordState } = useLogin();
+  const { email, password, setUserState, setPasswordState } = useLogin();
 
-  const userData = () => {
-    let data = JSON.stringify({ user, password });
+  const userData = async () => {
+    if (!email || !password) {
+      Alert.alert("Erro", "Preencha usuário e senha.");
+      return;
+    }
 
-    console.log(data);
+    try {
+      const authData = await pb
+        .collection("users")
+        .authWithPassword(email, password);
+
+      console.log("Usuário logado:", authData);
+
+      Alert.alert("Sucesso", `Bem-vindo, ${authData.record.name || email}!`);
+    } catch (err) {
+      console.log("Erro ao logar:", err);
+      Alert.alert("Erro", "Usuário ou senha incorretos.");
+    }
   };
 
   const [fontsLoaded] = useFonts({
@@ -25,7 +40,7 @@ export default function FormLogin() {
       <Input
         label="User"
         placeholder="Digite seu email"
-        value={user}
+        value={email}
         onChangeText={setUserState}
       />
 

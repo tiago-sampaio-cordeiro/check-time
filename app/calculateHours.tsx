@@ -16,6 +16,7 @@ import InputTimes from "../components/inputs/InputTimes";
 import InputDate from "../components/inputs/InputDate";
 import TotalHours from "../components/inputs/TotalHours";
 import { useTimeValidation } from "../hooks/useTimeValidation";
+import { pb } from "../services/pb";
 
 type TimePair = {
   id: number;
@@ -84,18 +85,41 @@ export default function calculateHours() {
 
   const { isValid, errors, errorMessage } = useTimeValidation(timePairs, data);
 
-  function handleSave() {
+  async function handleSave() {
     setSubmitted(true);
 
-    if (!isValid) {
-      console.log(errors);
+    const invalidPair = timePairs.some((pair) => !pair.entrada || !pair.saida);
+    if (invalidPair) {
+      Alert.alert(
+        "Erro",
+        "Todos os pares devem ter entrada e saída preenchidos!"
+      );
       return;
     }
 
     const total = calcularTotalHoras(timePairs);
     Alert.alert("Total de horas", `Você trabalhou ${total}`);
 
-    // futura integração PocketBase
+    const registros = timePairs.map((pair) => ({
+      entrada: pair.entrada,
+      saida: pair.saida,
+      data: data,
+    }));
+
+    console.log(registros);
+
+    try {
+      for (const registro of registros) {
+        await pb.collection("horas").create(registro);
+      }
+      Alert.alert("Sucesso", "Todos os registros foram salvos!");
+    } catch (err) {
+      console.error(err);
+      Alert.alert(
+        "Erro",
+        "Não foi possível salvar os registros no PocketBase."
+      );
+    }
   }
 
   return (
