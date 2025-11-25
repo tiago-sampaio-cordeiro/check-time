@@ -42,7 +42,7 @@ export default function Card({
 const styles = StyleSheet.create({
   containerCard: {
     width: 350,
-    backgroundColor: "#1E2A47",
+    backgroundColor: "#2847afff",
     borderRadius: 15,
     padding: 15,
     marginBottom: 12,
