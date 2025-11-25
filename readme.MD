@@ -31,7 +31,7 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 - [x] Criar projeto com Expo
 - [x] Configurar expo router
 - [x] Implementar tela de **Login** (mock simples, sem backend)
-- [ ] Implementar autenticação basica com mock de users
+- [x] Implementar autenticação basica com pocketbase
 - **Previsão:** 1 semana
 
 ---
@@ -39,9 +39,9 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 ### Sprint 2 (Semana 2) – Funcionalidades principais
 
 - [x] Tela calcular horas trabalhadas”
-- [ ] Registro de entrada/saída
+- [x] Registro de entrada/saída
 - [x] Persistência local com AsyncStorage
-- [ ] Diferenciar **entrada e saída** automaticamente
+- [x] Diferenciar **entrada e saída**
 - **Previsão:** 1 semana
 
 ---
@@ -49,7 +49,7 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 ### Sprint 3 (Semana 3) – Histórico e cálculos
 
 - [x] Tela de **Histórico** com lista de registros
-- [ ] Cálculo de **horas trabalhadas por dia**
+- [x] Cálculo de **horas trabalhadas por dia**
 - [ ] Soma de horas em período selecionado
 - **Previsão:** 1 semana
 
@@ -59,7 +59,7 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 
 - [ ] Editar/remover registros
 - [x] Ajustes de layout e usabilidade
-- [ ] Testes e melhorias finais
+- [x] Testes e melhorias finais
 - **Previsão:** 1 semana
 
 ### Atualizações desde o último checkpoint
@@ -70,3 +70,28 @@ O Check time é um aplicativo de acompanhamento de jornada de trabalho. O usuár
 
   - Atomic design na tela de login, onde atomizei o formulário de login até o nivel dos inputs
   - O titulo do app, o icone,botão de submit,cards com os horarios de netrada e saida e sub-titulo todos reutilizáveis, sendo o sub-titulo,botão de submit e cards com parâmetrização.
+
+### Destaques da aplicação
+
+![Logo](assets/destaques.png)
+
+### Justificativas
+
+2 requisitos nao foram cumpridos, sendo:
+
+- edição/remoçao de registros
+- soma de horas em periodo selecionado
+
+Infelizmente nao consegui implementar essas 2 funcionalidades por nao ter mais prazo.
+
+### Recurso mais interessante e principais dificuldades:
+
+- **Recursos mais interessante**
+
+  - **Adição e remoção de pares**: usuário pode adicionar ou remover mais de um par de entrada e saida sem ter a necessidade de inserir um tempo de intervalo
+
+  - **Pocketbase**: O Pocketbase traz uma facilidade na criação da aplicação, com ele nao é preciso se preocupar em configurar um backend do zero.
+
+**Dificuldades no projeto**
+
+- integrar o pocketbase apesar de ser facil de usar, sempre esbarrava em algum erro e perdia um tempo tentando descobrir o que estava errado;
