@@ -18,13 +18,20 @@ interface Registro {
 export default function listTime() {
   const [registros, setRegistros] = useState<Registro[]>([]);
 
+  const formatDateBR = (dateString: string) => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
   const loadRegistros = async () => {
     try {
-      const data = await pb.collection("horas").getFullList({});
-
+      const data = await pb.collection("horas").getFullList({
+        filter: `user = "${pb.authStore.model?.id}"`,
+      });
       const registrosFormatados: Registro[] = data.map((r) => ({
         id: r.id,
-        data: r.data,
+        data: r.data.split("-").reverse().join("/"),
         entrada: r.entrada,
         saida: r.saida,
         total: r.total,
@@ -43,23 +50,25 @@ export default function listTime() {
   );
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <TimeIcon />
-        <TitleApp />
-        <Subtitle subtitleName="Registros" />
+    <View style={{ flex: 1, backgroundColor: "#172A42" }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.container}>
+          <TimeIcon />
+          <TitleApp />
+          <Subtitle subtitleName="Registros" />
 
-        {registros.map((r) => {
-          const cardProps: CardProps = {
-            cardTitle: r.data,
-            horarioEntrada: r.entrada,
-            horarioSaida: r.saida,
-            horasTotal: r.total,
-          };
-          return <Card key={r.id} {...cardProps} />;
-        })}
-      </View>
-    </ScrollView>
+          {registros.map((r) => {
+            const cardProps: CardProps = {
+              cardTitle: r.data,
+              horarioEntrada: r.entrada,
+              horarioSaida: r.saida,
+              horasTotal: r.total,
+            };
+            return <Card key={r.id} {...cardProps} />;
+          })}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 

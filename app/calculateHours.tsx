@@ -97,6 +97,11 @@ export default function calculateHours() {
       return;
     }
 
+    if (!pb.authStore.model) {
+      Alert.alert("Erro", "Nenhum usuário logado.");
+      return;
+    }
+
     const total = calcularTotalHoras(timePairs);
     Alert.alert("Total de horas", `Você trabalhou ${total}`);
 
@@ -110,9 +115,18 @@ export default function calculateHours() {
     console.log(registros);
 
     try {
+      console.log("USER ID:", pb.authStore.model?.id);
+
       for (const registro of registros) {
-        await pb.collection("horas").create(registro);
+        await pb.collection("horas").create({
+          entrada: registro.entrada,
+          saida: registro.saida,
+          data: registro.data,
+          total: registro.total,
+          user: pb.authStore.model?.id,
+        });
       }
+
       Alert.alert("Sucesso", "Todos os registros foram salvos!");
     } catch (err) {
       console.error(err);
