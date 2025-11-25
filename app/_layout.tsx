@@ -3,6 +3,7 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Octicons from "@expo/vector-icons/Octicons";
 
 export default function _layout() {
   return (
@@ -35,6 +36,15 @@ export default function _layout() {
               size={24}
               color="#501be0ff"
             />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{
+          headerShown: false,
+          tabBarIcon: () => (
+            <Octicons name="sign-in" size={24} color="#501be0ff" />
           ),
         }}
       />
