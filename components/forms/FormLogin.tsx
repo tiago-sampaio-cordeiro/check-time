@@ -5,9 +5,11 @@ import Input from "../inputs/InputForms";
 import Button from "../buttons/Button";
 import useLogin from "../../states/useLogin";
 import { pb } from "../../services/pb";
+import { useRouter } from "expo-router";
 
 export default function FormLogin() {
   const { email, password, setUserState, setPasswordState } = useLogin();
+  const router = useRouter();
 
   const userData = async () => {
     if (!email || !password) {
@@ -55,10 +57,7 @@ export default function FormLogin() {
 
       <Text style={styles.textLink}>
         You don't have an account?{" "}
-        <Text
-          style={styles.register}
-          onPress={() => console.log("direcionando para tela de cadastro")}
-        >
+        <Text style={styles.register} onPress={() => router.push("/register")}>
           Register
         </Text>
       </Text>
