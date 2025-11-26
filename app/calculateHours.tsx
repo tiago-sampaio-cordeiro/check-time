@@ -88,12 +88,9 @@ export default function calculateHours() {
   async function handleSave() {
     setSubmitted(true);
 
-    const invalidPair = timePairs.some((pair) => !pair.entrada || !pair.saida);
-    if (invalidPair) {
-      Alert.alert(
-        "Erro",
-        "Todos os pares devem ter entrada e saída preenchidos!"
-      );
+    const { isValid, errorMessage } = useTimeValidation(timePairs, data);
+
+    if (!isValid) {
       return;
     }
 
